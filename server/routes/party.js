@@ -13,7 +13,7 @@ router.post("/add", (req, res, next) => {
     imageUrl,
     guestList
   } = req.body;
-  console.log("tRrRYing to add party");
+
   Party.create({
     title,
     description,

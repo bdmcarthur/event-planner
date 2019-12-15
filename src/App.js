@@ -19,26 +19,22 @@ class App extends Component {
       username: null,
       parties: null
     };
-    this.getParties = this.getParties.bind(this);
-    this.getUser = this.getUser.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.updateUser = this.updateUser.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getUser();
     this.getParties();
-  }
+  };
 
-  updateUser(userObject) {
+  updateUser = userObject => {
+    console.log("is this ever called");
     this.setState(userObject);
-  }
+  };
 
-  getUser() {
+  getUser = () => {
     axios.get("/user/").then(response => {
       if (response.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
-
         this.setState({
           loggedIn: true,
           username: response.data.user.username
@@ -51,12 +47,13 @@ class App extends Component {
         });
       }
     });
-  }
+  };
 
-  getParties() {
+  getParties = () => {
     axios
-      .get("party/getParties")
+      .get("/party/getParties")
       .then(response => {
+        console.log("this", response.data.data.plan);
         this.setState({
           parties: response.data.data.plan
         });
@@ -65,18 +62,17 @@ class App extends Component {
         console.log("Get parties: no parties");
         console.log(error);
       });
-  }
+  };
 
   render() {
     return (
       <div>
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         <Route exact path="/" component={Home} />
+        {/* <Route path="/" {...props} component={Plan} /> */}
         <Route
-          exact
           path="/party/:id"
-          parties={this.state.parties}
-          component={Plan}
+          render={props => <Plan {...props} parties={this.state.parties} />}
         />
         <Route
           path="/login"
