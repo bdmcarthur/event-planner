@@ -27,20 +27,17 @@ class App extends Component {
   };
 
   updateUser = userObject => {
-    console.log("is this ever called");
     this.setState(userObject);
   };
 
   getUser = () => {
     axios.get("/user/").then(response => {
       if (response.data.user) {
-        console.log("Get User: There is a user saved in the server session: ");
         this.setState({
           loggedIn: true,
           username: response.data.user.username
         });
       } else {
-        console.log("Get user: no user");
         this.setState({
           loggedIn: false,
           username: null
@@ -53,13 +50,11 @@ class App extends Component {
     axios
       .get("/party/getParties")
       .then(response => {
-        console.log("this", response.data.data.plan);
         this.setState({
           parties: response.data.data.plan
         });
       })
       .catch(error => {
-        console.log("Get parties: no parties");
         console.log(error);
       });
   };
@@ -68,29 +63,32 @@ class App extends Component {
     return (
       <div>
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        <Route exact path="/" component={Home} />
-        {/* <Route path="/" {...props} component={Plan} /> */}
+        <Route path="/" exact component={Home} />
         <Route
-          path="/party/:id"
-          render={props => <Plan {...props} parties={this.state.parties} />}
+          exact
+          path="/party/new"
+          render={() => <PlanForm getParties={this.getParties} />}
         />
         <Route
           path="/login"
+          exact
           render={() => <LoginForm updateUser={this.updateUser} />}
         />
         <Route
           path="/signup"
+          exact
           render={() => <Signup updateUser={this.updateUser} />}
         />
         <Route
           path="/profile"
+          exact
           render={() => <Profile parties={this.state.parties} />}
         />
-        {/* <Route
-          path="/party/:id"
-          render={() => <Plan parties={this.state.parties} />}
-        /> */}
-        <Route path="/party/new" component={PlanForm} />
+        <Route
+          path="/parties/:id"
+          exact
+          render={props => <Plan {...props} parties={this.state.parties} />}
+        />
       </div>
     );
   }

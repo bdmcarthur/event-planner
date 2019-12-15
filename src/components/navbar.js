@@ -49,17 +49,17 @@ class Navbar extends Component {
           {loggedIn ? (
             <ul className="navbar-nav">
               <li className="nav-item">
+                <Link to="/profile" className="btn btn-link text-secondary">
+                  <span className="text-secondary">Profile</span>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link
                   to="#"
                   className="btn btn-link text-secondary"
                   onClick={this.logout}
                 >
                   <span className="text-secondary">Log Out</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/profile" className="btn btn-link text-secondary">
-                  <span className="text-secondary">Profile</span>
                 </Link>
               </li>
             </ul>

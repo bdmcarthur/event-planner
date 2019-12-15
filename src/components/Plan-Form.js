@@ -42,13 +42,16 @@ class PlanForm extends Component {
       date,
       time
     })
-      .then(response => {})
+      .then(response => {
+        this.setState({
+          redirectTo: `/parties/${response._id}`
+        });
+      })
       .catch(error => {
         console.log(error);
       });
-    this.setState({
-      redirectTo: "/"
-    });
+
+    this.props.getParties();
   };
 
   render() {
@@ -123,7 +126,7 @@ class PlanForm extends Component {
               className="btn btn-primary"
               onClick={this.handleSubmit}
             >
-              Submit
+              Complete and Share!
             </button>
           </form>
         </div>

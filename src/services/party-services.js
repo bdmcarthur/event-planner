@@ -25,24 +25,10 @@ export const addService = ({
         date
       })
       .then(response => {
-        console.log(response.data);
-        const party = response.data.plan;
+        const party = response.data.data.plan;
         resolve(party);
       })
       .catch(error => {
         reject(error);
       });
   });
-
-// export const getParties = id => {
-//   return new Promise((resolve, reject) => {
-//     partyAPI
-//       .get(`/getParties`)
-//       .then(response => {
-//         resolve(response.data.data.plan);
-//       })
-//       .catch(error => {
-//         reject(error);
-//       });
-//   });
-// };

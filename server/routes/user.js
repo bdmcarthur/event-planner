@@ -9,7 +9,6 @@ router.post("/signup", (req, res) => {
   // ADD VALIDATION
   User.findOne({ username: username }, (err, user) => {
     if (err) {
-      console.log("User.js post error: ", err);
     } else if (user) {
       res.json({
         error: `Sorry, already a user with the username: ${username}`
@@ -31,13 +30,10 @@ router.post("/signup", (req, res) => {
 router.post(
   "/login",
   function(req, res, next) {
-    console.log("routes/user.js, login, req.body: ");
-    console.log(req.body);
     next();
   },
   passport.authenticate("local"),
   (req, res) => {
-    console.log("logged in", req.user);
     var userInfo = {
       username: req.user.username
     };
@@ -46,8 +42,6 @@ router.post(
 );
 
 router.get("/", (req, res, next) => {
-  console.log("===== user!!======");
-  console.log(req.user);
   if (req.user) {
     res.json({ user: req.user });
   } else {

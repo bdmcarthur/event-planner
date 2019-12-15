@@ -35,6 +35,9 @@ const partySchema = new Schema(
     address: {
       type: String
     },
+    partyCode: {
+      type: String
+    },
     guestList: [
       {
         type: String

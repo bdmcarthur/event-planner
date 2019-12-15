@@ -3,6 +3,21 @@ const router = express.Router();
 const User = require("../database/models/user");
 const Party = require("../database/models/party");
 
+const generateRandomCode = (() => {
+  const USABLE_CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789".split("");
+
+  return length => {
+    return new Array(length)
+      .fill(null)
+      .map(() => {
+        return USABLE_CHARACTERS[
+          Math.floor(Math.random() * USABLE_CHARACTERS.length)
+        ];
+      })
+      .join("");
+  };
+})();
+
 router.post("/add", (req, res, next) => {
   const {
     title,
@@ -22,7 +37,8 @@ router.post("/add", (req, res, next) => {
     date,
     imageUrl,
     guestList,
-    user: req.user._id
+    user: req.user._id,
+    partyCode: generateRandomCode(6)
   })
     .then(plan => {
       res.json({ type: "success", data: { plan } });
