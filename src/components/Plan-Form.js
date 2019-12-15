@@ -9,6 +9,7 @@ class PlanForm extends Component {
       title: "",
       description: "",
       date: "",
+      time: "",
       address: "",
       imageUrl: "",
       guestList: "",
@@ -23,13 +24,23 @@ class PlanForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { title, description, address, imageUrl, guestList } = this.state;
+    const {
+      title,
+      description,
+      address,
+      imageUrl,
+      guestList,
+      date,
+      time
+    } = this.state;
     PartyServices.addService({
       title,
       description,
       address,
       imageUrl,
-      guestList
+      guestList,
+      date,
+      time
     })
       .then(response => {})
       .catch(error => {
@@ -46,6 +57,7 @@ class PlanForm extends Component {
     } else {
       return (
         <div className="container">
+          <h1>Plan Your Fabulous Event</h1>
           <form>
             <div className="form-group">
               <label for="title">Title</label>

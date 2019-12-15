@@ -57,6 +57,11 @@ class Navbar extends Component {
                   <span className="text-secondary">Log Out</span>
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to="/profile" className="btn btn-link text-secondary">
+                  <span className="text-secondary">Profile</span>
+                </Link>
+              </li>
             </ul>
           ) : (
             <ul className="navbar-nav">

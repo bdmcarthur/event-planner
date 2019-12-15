@@ -7,15 +7,19 @@ import LoginForm from "./Components/Login-Form";
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import PlanForm from "./Components/Plan-Form";
+import Plan from "./Components/Plan";
+import Profile from "./Components/Profile";
+import * as PartyServices from "./services/party-services";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      parties: null
     };
-
+    this.getParties = this.getParties.bind(this);
     this.getUser = this.getUser.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -23,6 +27,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getUser();
+    this.getParties();
   }
 
   updateUser(userObject) {
@@ -48,11 +53,31 @@ class App extends Component {
     });
   }
 
+  getParties() {
+    axios
+      .get("party/getParties")
+      .then(response => {
+        this.setState({
+          parties: response.data.data.plan
+        });
+      })
+      .catch(error => {
+        console.log("Get parties: no parties");
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div>
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/party/:id"
+          parties={this.state.parties}
+          component={Plan}
+        />
         <Route
           path="/login"
           render={() => <LoginForm updateUser={this.updateUser} />}
@@ -61,7 +86,15 @@ class App extends Component {
           path="/signup"
           render={() => <Signup updateUser={this.updateUser} />}
         />
-        <Route path="/plan/new" component={PlanForm} />
+        <Route
+          path="/profile"
+          render={() => <Profile parties={this.state.parties} />}
+        />
+        {/* <Route
+          path="/party/:id"
+          render={() => <Plan parties={this.state.parties} />}
+        /> */}
+        <Route path="/party/new" component={PlanForm} />
       </div>
     );
   }

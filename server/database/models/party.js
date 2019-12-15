@@ -26,16 +26,16 @@ const partySchema = new Schema(
     location: {
       type: Object
     },
-    Time: {
+    time: {
       type: String
     },
-    Date: {
+    date: {
       type: String
     },
-    Address: {
+    address: {
       type: String
     },
-    GuestList: [
+    guestList: [
       {
         type: String
       }
