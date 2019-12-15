@@ -1,34 +1,36 @@
 import React, { Component } from "../../node_modules/react";
 import { Link } from "../../node_modules/react-router-dom";
 import "../App.css";
-import axios from "../../node_modules/axios";
-
+import { withRouter } from "react-router-dom";
+import axios from "axios";
 class Navbar extends Component {
   constructor() {
     super();
-    this.logout = this.logout.bind(this);
   }
-
-  logout(event) {
+  logout = event => {
     event.preventDefault();
     axios
       .post("/user/logout")
       .then(response => {
-        console.log("logout", response.data);
         if (response.status === 200) {
           this.props.updateUser({
             loggedIn: false,
-            username: null
+            loggedInUser: null
           });
+          this.props.history.push("/");
         }
       })
       .catch(error => {
-        console.log("Logout error");
+        console.log("Logout error", error);
       });
-  }
+  };
 
   render() {
     const loggedIn = this.props.loggedIn;
+    let userId = null;
+    if (loggedIn && this.props.loggedInUser) {
+      userId = this.props.loggedInUser._id;
+    }
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
         <Link to="/" className="btn btn-link text-secondary">
@@ -49,7 +51,10 @@ class Navbar extends Component {
           {loggedIn ? (
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/profile" className="btn btn-link text-secondary">
+                <Link
+                  to={`/profile/${userId}`}
+                  className="btn btn-link text-secondary"
+                >
                   <span className="text-secondary">Profile</span>
                 </Link>
               </li>
@@ -83,4 +88,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

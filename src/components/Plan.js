@@ -8,15 +8,6 @@ import {
   EmailIcon
 } from "react-share";
 
-import {
-  FacebookShareCount,
-  PinterestShareCount,
-  VKShareCount,
-  OKShareCount,
-  RedditShareCount,
-  TumblrShareCount
-} from "react-share";
-
 const Plan = props => {
   let partyId = props.match.params.id;
   let partyList = props.parties;

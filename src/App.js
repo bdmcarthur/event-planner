@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route } from "react-router-dom";
-
+import { Route, Switch, BrowserRouter, withRouter } from "react-router-dom";
 import Signup from "./Components/Sign-Up";
 import LoginForm from "./Components/Login-Form";
 import Navbar from "./Components/Navbar";
@@ -10,14 +9,16 @@ import PlanForm from "./Components/Plan-Form";
 import Plan from "./Components/Plan";
 import Profile from "./Components/Profile";
 import * as PartyServices from "./services/party-services";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       loggedIn: false,
-      username: null,
-      parties: null
+      loggedInUser: null,
+      parties: null,
+      redirectTo: null
     };
   }
 
@@ -35,12 +36,12 @@ class App extends Component {
       if (response.data.user) {
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          loggedInUser: response.data.user
         });
       } else {
         this.setState({
           loggedIn: false,
-          username: null
+          loggedInUser: null
         });
       }
     });
@@ -61,35 +62,54 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        <Route path="/" exact component={Home} />
-        <Route
-          exact
-          path="/party/new"
-          render={() => <PlanForm getParties={this.getParties} />}
+      <BrowserRouter>
+        <Navbar
+          history={this.history}
+          logout={this.logout}
+          updateUser={this.updateUser}
+          loggedIn={this.state.loggedIn}
+          loggedInUser={this.state.loggedInUser}
         />
-        <Route
-          path="/login"
-          exact
-          render={() => <LoginForm updateUser={this.updateUser} />}
-        />
-        <Route
-          path="/signup"
-          exact
-          render={() => <Signup updateUser={this.updateUser} />}
-        />
-        <Route
-          path="/profile"
-          exact
-          render={() => <Profile parties={this.state.parties} />}
-        />
-        <Route
-          path="/parties/:id"
-          exact
-          render={props => <Plan {...props} parties={this.state.parties} />}
-        />
-      </div>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route
+            exact
+            path="/party/new"
+            render={() => <PlanForm getParties={this.getParties} />}
+          />
+          <Route
+            path="/login"
+            exact
+            render={() => <LoginForm updateUser={this.updateUser} />}
+          />
+          <Route
+            path="/signup"
+            exact
+            render={() => <Signup updateUser={this.updateUser} />}
+          />
+          <Route
+            path="/profile/:id"
+            exact
+            render={props => (
+              <Profile
+                {...props}
+                user={this.state.loggedInUser}
+                parties={this.state.parties}
+              />
+            )}
+          />
+          {/* <ProtectedRoute
+          user={this.state.loggedInUser}
+          path="/profile/:id"
+          component={Profile}
+        /> */}
+          <Route
+            path="/parties/:id"
+            exact
+            render={props => <Plan {...props} parties={this.state.parties} />}
+          />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
