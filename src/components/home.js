@@ -1,14 +1,19 @@
-import React from "react";
+import React from "../../node_modules/react";
 
 export default function home() {
   return (
-    <div>
-      <p>It's good to be home</p>
-      <img
-        src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg"
-        alt="home"
-        style={{ width: "40%" }}
-      />
+    <div className="home">
+      <div className="container">
+        <h1 className="home-title">Party Planner</h1>
+        <div>
+          <button type="button" className="btn btn-secondary btn-lg m-3">
+            Start Planning!
+          </button>
+          <button type="button" className="btn btn-secondary btn-lg m-3">
+            See Examples
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

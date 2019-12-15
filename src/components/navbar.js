@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "../../node_modules/react";
+import { Link } from "../../node_modules/react-router-dom";
 import "../App.css";
-import axios from "axios";
+import axios from "../../node_modules/axios";
 
 class Navbar extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class Navbar extends Component {
     axios
       .post("/user/logout")
       .then(response => {
-        console.log('logout', response.data);
+        console.log("logout", response.data);
         if (response.status === 200) {
           this.props.updateUser({
             loggedIn: false,
@@ -30,7 +30,7 @@ class Navbar extends Component {
   render() {
     const loggedIn = this.props.loggedIn;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
         <Link to="/" className="btn btn-link text-secondary">
           <span className="text-secondary">Home</span>
         </Link>

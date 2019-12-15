@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Route } from "react-router-dom";
 
-import Signup from "./components/sign-up";
-import LoginForm from "./components/login-form";
-import Navbar from "./components/navbar";
-import Home from "./components/home";
+import Signup from "./Components/Sign-Up";
+import LoginForm from "./Components/Login-Form";
+import Navbar from "./Components/Navbar";
+import Home from "./Components/Home";
+import PlanForm from "./Components/Plan-Form";
 
 class App extends Component {
   constructor() {
@@ -49,11 +50,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        {/* greet user if logged in: */}
-        {this.state.loggedIn && <p>Join the party, {this.state.name}!</p>}
-        {/* Routes to different components */}
         <Route exact path="/" component={Home} />
         <Route
           path="/login"
@@ -63,6 +61,7 @@ class App extends Component {
           path="/signup"
           render={() => <Signup updateUser={this.updateUser} />}
         />
+        <Route path="/plan/new" component={PlanForm} />
       </div>
     );
   }
