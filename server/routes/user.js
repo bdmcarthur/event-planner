@@ -34,10 +34,11 @@ router.post(
   },
   passport.authenticate("local"),
   (req, res) => {
+    console.log("hyygsdfhagsdfjhas", req.user);
     var userInfo = {
-      username: req.user
+      user: req.user
     };
-    res.send(userInfo);
+    res.send(req.user);
   }
 );
 

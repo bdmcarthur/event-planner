@@ -58,4 +58,15 @@ router.get("/getParties", (req, res, next) => {
     });
 });
 
+router.get("/loadParty/:id", (req, res, next) => {
+  Party.find({ _id: req.params.id })
+    .populate("user")
+    .then(plan => {
+      res.json({ type: "success", data: { plan } });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 module.exports = router;

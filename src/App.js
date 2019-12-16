@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, Switch, BrowserRouter, withRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Signup from "./Components/Sign-Up";
 import LoginForm from "./Components/Login-Form";
 import Navbar from "./Components/Navbar";
@@ -8,7 +8,6 @@ import Home from "./Components/Home";
 import PlanForm from "./Components/Plan-Form";
 import Plan from "./Components/Plan";
 import Profile from "./Components/Profile";
-import * as PartyServices from "./services/party-services";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 class App extends Component {
@@ -24,11 +23,13 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getUser();
-    this.getParties();
   };
 
   updateUser = userObject => {
     this.setState(userObject);
+    if (userObject.loggedInUser) {
+      this.getParties();
+    }
   };
 
   getUser = () => {
@@ -38,6 +39,7 @@ class App extends Component {
           loggedIn: true,
           loggedInUser: response.data.user
         });
+        this.getParties();
       } else {
         this.setState({
           loggedIn: false,
@@ -51,7 +53,6 @@ class App extends Component {
     axios
       .get("/party/getParties")
       .then(response => {
-        console.log();
         if (response.data.data.plan) {
           this.setState({
             parties: response.data.data.plan
@@ -105,7 +106,7 @@ class App extends Component {
           <Route
             path="/parties/:id"
             exact
-            render={props => <Plan {...props} parties={this.state.parties} />}
+            render={props => <Plan {...props} user={this.state.loggedInUser} />}
           />
         </Switch>
       </BrowserRouter>

@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const authAPI = axios.create({
-  baseURL: `/`
+  baseURL: `/user`
 });
 
 export const signUpService = ({ username, password, name }) =>
   new Promise((resolve, reject) => {
     authAPI
-      .post("/user/signup", {
+      .post("/signup", {
         username,
         password,
         name
@@ -24,7 +24,7 @@ export const signUpService = ({ username, password, name }) =>
 export const logInService = ({ username, password }) =>
   new Promise((resolve, reject) => {
     authAPI
-      .post("/user/login", { username, password })
+      .post("/login", { username, password })
       .then(response => {
         const user = response.data;
         resolve(user);
