@@ -28,9 +28,7 @@ class App extends Component {
   };
 
   updateUser = userObject => {
-    console.log("is this eorking");
     this.setState(userObject);
-    console.log(this.state.loggedInUser);
   };
 
   getUser = () => {
@@ -53,9 +51,12 @@ class App extends Component {
     axios
       .get("/party/getParties")
       .then(response => {
-        this.setState({
-          parties: response.data.data.plan
-        });
+        console.log();
+        if (response.data.data.plan) {
+          this.setState({
+            parties: response.data.data.plan
+          });
+        }
       })
       .catch(error => {
         console.log(error);

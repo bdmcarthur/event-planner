@@ -7,7 +7,6 @@ const protectedRoute = ({
   component: ViewComponent,
   ...rest
 }) => {
-  console.log({ component: ViewComponent, render, user, ...rest });
   return (
     <Route
       {...rest}
