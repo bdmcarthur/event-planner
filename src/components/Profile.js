@@ -9,7 +9,7 @@ const Profile = props => {
 
       {partyList ? (
         partyList.map(party => (
-          <Link to={`parties/${party._id}`}>
+          <Link to={`/parties/${party._id}`}>
             <div class="row">
               <div class="col-sm-6">
                 <div class="card">

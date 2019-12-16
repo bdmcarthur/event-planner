@@ -1,17 +1,28 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const protectedRoute = ({ component: Component, user, ...rest }) => {
-  console.log({ component: Component, user, ...rest });
+const protectedRoute = ({
+  user,
+  render,
+  component: ViewComponent,
+  ...rest
+}) => {
+  console.log({ component: ViewComponent, render, user, ...rest });
   return (
     <Route
       {...rest}
       render={props => {
         if (user) {
-          return <Component {...props} loggedInUser={user} />;
+          if (typeof render === "function") {
+            return render(props);
+          } else if (typeof ViewComponent !== "undefined") {
+            return <ViewComponent {...props} />;
+          }
         } else {
           return (
-            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+            <Redirect
+              to={{ pathname: "/login", state: { from: props.location } }}
+            />
           );
         }
       }}

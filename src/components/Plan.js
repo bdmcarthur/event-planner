@@ -9,6 +9,7 @@ import {
 } from "react-share";
 
 const Plan = props => {
+  console.log("xprops", props);
   let partyId = props.match.params.id;
   let partyList = props.parties;
   let party = "";

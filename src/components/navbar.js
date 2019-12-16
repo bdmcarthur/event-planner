@@ -3,9 +3,13 @@ import { Link } from "../../node_modules/react-router-dom";
 import "../App.css";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+
 class Navbar extends Component {
   constructor() {
     super();
+    this.state = {
+      userId: null
+    };
   }
   logout = event => {
     event.preventDefault();
@@ -25,12 +29,17 @@ class Navbar extends Component {
       });
   };
 
+  componentDidUpdate = prevProps => {
+    if (this.props.loggedInUser !== prevProps.loggedInUser) {
+      this.setState({
+        userId: this.props.loggedInUser._id
+      });
+    }
+  };
+
   render() {
     const loggedIn = this.props.loggedIn;
-    let userId = null;
-    if (loggedIn && this.props.loggedInUser) {
-      userId = this.props.loggedInUser._id;
-    }
+
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
         <Link to="/" className="btn btn-link text-secondary">
@@ -52,7 +61,7 @@ class Navbar extends Component {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link
-                  to={`/profile/${userId}`}
+                  to={`/profile/${this.state.userId}`}
                   className="btn btn-link text-secondary"
                 >
                   <span className="text-secondary">Profile</span>

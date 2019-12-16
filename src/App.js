@@ -28,7 +28,9 @@ class App extends Component {
   };
 
   updateUser = userObject => {
+    console.log("is this eorking");
     this.setState(userObject);
+    console.log(this.state.loggedInUser);
   };
 
   getUser = () => {
@@ -64,7 +66,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Navbar
-          history={this.history}
           logout={this.logout}
           updateUser={this.updateUser}
           loggedIn={this.state.loggedIn}
@@ -72,10 +73,10 @@ class App extends Component {
         />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route
-            exact
+          <ProtectedRoute
             path="/party/new"
-            render={() => <PlanForm getParties={this.getParties} />}
+            user={this.state.loggedInUser}
+            render={props => <PlanForm exact getParties={this.getParties} />}
           />
           <Route
             path="/login"
@@ -87,22 +88,19 @@ class App extends Component {
             exact
             render={() => <Signup updateUser={this.updateUser} />}
           />
-          <Route
+          <ProtectedRoute
             path="/profile/:id"
-            exact
+            user={this.state.loggedInUser}
             render={props => (
               <Profile
+                exact
                 {...props}
                 user={this.state.loggedInUser}
                 parties={this.state.parties}
               />
             )}
           />
-          {/* <ProtectedRoute
-          user={this.state.loggedInUser}
-          path="/profile/:id"
-          component={Profile}
-        /> */}
+
           <Route
             path="/parties/:id"
             exact
