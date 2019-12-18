@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const Profile = props => {
   let partyList = props.parties;
+
   return (
     <div class="container">
       <h1>Profile</h1>
-
       {partyList ? (
         partyList.map(party => (
           <Link to={`/parties/${party._id}`}>

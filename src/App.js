@@ -15,6 +15,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      userLoaded: false,
       loggedIn: false,
       loggedInUser: null,
       parties: null,
@@ -28,6 +29,7 @@ class App extends Component {
 
   updateUser = userObject => {
     this.setState({
+      userLoaded: true,
       loggedInUser: userObject.loggedInUser,
       loggedIn: userObject.loggedIn
     });
@@ -41,12 +43,14 @@ class App extends Component {
     axios.get("/user/").then(response => {
       if (response.data.user) {
         this.setState({
+          userLoaded: true,
           loggedIn: true,
           loggedInUser: response.data.user
         });
         this.getParties();
       } else {
         this.setState({
+          userLoaded: true,
           loggedIn: false,
           loggedInUser: null
         });
@@ -72,14 +76,17 @@ class App extends Component {
   };
 
   render() {
+    let userLoaded = this.state.userLoaded;
     return (
       <BrowserRouter>
-        <Navbar
-          logout={this.logout}
-          updateUser={this.updateUser}
-          loggedIn={this.state.loggedIn}
-          loggedInUser={this.state.loggedInUser}
-        />
+        {userLoaded === true && (
+          <Navbar
+            logout={this.logout}
+            updateUser={this.updateUser}
+            loggedIn={this.state.loggedIn}
+            loggedInUser={this.state.loggedInUser}
+          />
+        )}
         <Switch>
           <Route path="/" exact component={Home} />
           <ProtectedRoute

@@ -2,12 +2,11 @@ import React, { Component } from "../../node_modules/react";
 import { Link } from "../../node_modules/react-router-dom";
 import "../App.css";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
 import * as AuthServices from "../services/auth-services";
 
 class Navbar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userId: null
     };
@@ -33,8 +32,9 @@ class Navbar extends Component {
   componentDidUpdate = prevProps => {
     if (this.props.loggedInUser) {
       if (this.props.loggedInUser !== prevProps.loggedInUser) {
+        console.log("here", this.props.loggedInUser);
         this.setState({
-          userId: this.props.loggedInUser._id
+          userId: this.props.loggedInUser
         });
       }
     }
@@ -42,6 +42,10 @@ class Navbar extends Component {
 
   render() {
     const loggedIn = this.props.loggedIn;
+    let user;
+    if (this.props.loggedInUser) {
+      user = this.props.loggedInUser._id;
+    }
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
         <Link to="/" className="btn btn-link text-secondary">
@@ -63,7 +67,7 @@ class Navbar extends Component {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link
-                  to={`/profile/${this.state.userId}`}
+                  to={`/profile/${user}`}
                   className="btn btn-link text-secondary"
                 >
                   <span className="text-secondary">Profile</span>
