@@ -32,3 +32,15 @@ export const addService = ({
         reject(error);
       });
   });
+
+export const getPartiesService = user =>
+  new Promise((resolve, reject) => {
+    partyAPI
+      .get("/getParties", user)
+      .then(response => {
+        resolve(response.data.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });

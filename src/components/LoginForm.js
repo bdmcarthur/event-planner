@@ -1,57 +1,44 @@
-import React, { Component } from "../../node_modules/react";
-import { Redirect } from "../../node_modules/react-router-dom";
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import * as AuthenticationServices from "../services/auth-services";
 
-class Signup extends Component {
+class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
       username: "",
       password: "",
-      confirmPassword: "",
-      name: "",
       redirectTo: null
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
-  handleChange(event) {
+
+  handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
-  handleSubmit(event) {
+  };
+
+  handleSubmit = event => {
     event.preventDefault();
-    const { username, password, name } = this.state;
-    AuthenticationServices.signUpService({
+    const { username, password } = this.state;
+
+    AuthenticationServices.logInService({
       username,
-      password,
-      name
+      password
     })
-      .then(response => {
-        if (response) {
-          AuthenticationServices.logInService({
-            username,
-            password
-          })
-            .then(user => {
-              this.props.updateUser({
-                loggedIn: true,
-                loggedInUser: user
-              });
-              this.setState({
-                redirectTo: "/"
-              });
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        }
+      .then(user => {
+        this.props.updateUser({
+          loggedIn: true,
+          loggedInUser: user
+        });
+        this.setState({
+          redirectTo: "/"
+        });
       })
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   render() {
     if (this.state.redirectTo) {
@@ -59,15 +46,15 @@ class Signup extends Component {
     } else {
       return (
         <div className="container">
-          <h4>Sign up</h4>
+          <h4>Login</h4>
           <form>
             <div className="form-group text-left">
               <label htmlFor="username">Email address</label>
               <input
                 type="email"
                 className="form-control"
-                autoComplete="username"
                 id="username"
+                autoComplete="username"
                 name="username"
                 aria-describedby="emailHelp"
                 value={this.state.username}
@@ -76,23 +63,10 @@ class Signup extends Component {
             </div>
 
             <div className="form-group text-left">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                aria-describedby="emailHelp"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-              ></input>
-            </div>
-
-            <div className="form-group text-left">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
-                autoComplete="new-password"
+                autoComplete="current-password"
                 className="form-control"
                 id="password"
                 name="password"
@@ -106,7 +80,7 @@ class Signup extends Component {
               className="btn btn-primary"
               onClick={this.handleSubmit}
             >
-              Sign Up
+              Login
             </button>
           </form>
         </div>
@@ -115,4 +89,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default LoginForm;

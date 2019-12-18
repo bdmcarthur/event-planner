@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as PartyServices from "../services/party-services";
-import { Redirect } from "../../node_modules/react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class PlanForm extends Component {
   constructor() {
@@ -46,12 +46,11 @@ class PlanForm extends Component {
         this.setState({
           redirectTo: `/parties/${response._id}`
         });
+        this.props.getParties();
       })
       .catch(error => {
         console.log(error);
       });
-
-    this.props.getParties();
   };
 
   render() {

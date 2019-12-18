@@ -3,6 +3,7 @@ import { Link } from "../../node_modules/react-router-dom";
 import "../App.css";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import * as AuthServices from "../services/auth-services";
 
 class Navbar extends Component {
   constructor() {
@@ -11,10 +12,10 @@ class Navbar extends Component {
       userId: null
     };
   }
+
   logout = event => {
     event.preventDefault();
-    axios
-      .post("/user/logout")
+    AuthServices.logoutService()
       .then(response => {
         if (response.status === 200) {
           this.props.updateUser({
@@ -41,7 +42,6 @@ class Navbar extends Component {
 
   render() {
     const loggedIn = this.props.loggedIn;
-
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
         <Link to="/" className="btn btn-link text-secondary">

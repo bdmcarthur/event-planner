@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
-import Signup from "./Components/Sign-Up";
-import LoginForm from "./Components/Login-Form";
+import Signup from "./Components/SignUp";
+import LoginForm from "./Components/LoginForm";
 import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
-import PlanForm from "./Components/Plan-Form";
-import Plan from "./Components/Plan";
-import Profile from "./Components/Profile";
+import Home from "./views/HomeView";
+import PlanForm from "./Components/PlanForm";
+import Plan from "./views/PartyView";
+import Profile from "./views/ProfileView";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import * as PartyServices from "./services/party-services";
 
 class App extends Component {
   constructor() {
@@ -26,8 +27,12 @@ class App extends Component {
   };
 
   updateUser = userObject => {
-    this.setState(userObject);
-    if (userObject.loggedInUser) {
+    this.setState({
+      loggedInUser: userObject.loggedInUser,
+      loggedIn: userObject.loggedIn
+    });
+
+    if (this.state.loggedInUser) {
       this.getParties();
     }
   };
@@ -50,12 +55,14 @@ class App extends Component {
   };
 
   getParties = () => {
-    axios
-      .get("/party/getParties")
-      .then(response => {
-        if (response.data.data.plan) {
+    let user = this.state.loggedInUser._id;
+    PartyServices.getPartiesService({
+      user
+    })
+      .then(party => {
+        if (party.plan) {
           this.setState({
-            parties: response.data.data.plan
+            parties: party.plan
           });
         }
       })

@@ -1,32 +1,30 @@
-import React, { Component } from "../../node_modules/react";
-import { Redirect } from "../../node_modules/react-router-dom";
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import * as AuthenticationServices from "../services/auth-services";
 
-class LoginForm extends Component {
+class Signup extends Component {
   constructor() {
     super();
     this.state = {
       username: "",
       password: "",
+      confirmPassword: "",
+      name: "",
       redirectTo: null
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
-
-  handleChange(event) {
+  handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
-
-  handleSubmit(event) {
+  };
+  handleSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
-
-    AuthenticationServices.logInService({
+    const { username, password, name } = this.state;
+    AuthenticationServices.signUpService({
       username,
-      password
+      password,
+      name
     })
       .then(user => {
         this.props.updateUser({
@@ -40,7 +38,7 @@ class LoginForm extends Component {
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   render() {
     if (this.state.redirectTo) {
@@ -48,15 +46,15 @@ class LoginForm extends Component {
     } else {
       return (
         <div className="container">
-          <h4>Login</h4>
+          <h4>Sign up</h4>
           <form>
             <div className="form-group text-left">
               <label htmlFor="username">Email address</label>
               <input
                 type="email"
                 className="form-control"
-                id="username"
                 autoComplete="username"
+                id="username"
                 name="username"
                 aria-describedby="emailHelp"
                 value={this.state.username}
@@ -65,10 +63,23 @@ class LoginForm extends Component {
             </div>
 
             <div className="form-group text-left">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                aria-describedby="emailHelp"
+                className="form-control"
+                value={this.state.name}
+                onChange={this.handleChange}
+              ></input>
+            </div>
+
+            <div className="form-group text-left">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
                 className="form-control"
                 id="password"
                 name="password"
@@ -82,7 +93,7 @@ class LoginForm extends Component {
               className="btn btn-primary"
               onClick={this.handleSubmit}
             >
-              Login
+              Sign Up
             </button>
           </form>
         </div>
@@ -91,4 +102,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default Signup;

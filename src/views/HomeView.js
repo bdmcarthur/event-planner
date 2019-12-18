@@ -1,7 +1,7 @@
-import React from "../../node_modules/react";
-import { Link } from "../../node_modules/react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function home() {
+const Home = () => {
   return (
     <div className="home">
       <div className="container">
@@ -25,4 +25,6 @@ export default function home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

@@ -49,7 +49,7 @@ router.post("/add", (req, res, next) => {
 });
 
 router.get("/getParties", (req, res, next) => {
-  Party.find({ user: req.user._id })
+  Party.find({ user: req.user })
     .then(plan => {
       res.json({ type: "success", data: { plan } });
     })
