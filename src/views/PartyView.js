@@ -42,21 +42,26 @@ export default class Plan extends Component {
       });
   };
   render() {
+    // let body =   background-image: url("images/wide/1.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // height: 95vh;
     let party = this.state.currentParty;
     return (
-      <div>
+      <div class="my-5 mx-auto party">
         {party && (
-          <div className="container w-75 mx-auto text-center">
-            <h1>{party[0].title}</h1>
-            <div className="card">
-              <div className="card-body">
-                <p className="card-title">Where: {party[0].address}</p>
-                <p className="card-title">
+          <div className="container mx-auto py-5">
+            <div className="party-detail mx-auto p-5">
+              <h1>{party[0].title}</h1>
+              <div className="">
+                <p className="">Where: {party[0].address}</p>
+                <p className="">
                   When: {party[0].date}, {party[0].time}
                 </p>
-                <p className="card-text">Details: {party[0].description}</p>
+                <p className="">Details: {party[0].description}</p>
               </div>
             </div>
+
             {this.state.isOwner && (
               <ShareButtons party={this.state.currentParty} />
             )}

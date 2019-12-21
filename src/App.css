@@ -20,7 +20,7 @@ h5 {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 92vh;
+  height: 100vh;
   background-color: #ffe7e3;
 }
 
@@ -33,6 +33,20 @@ h5 {
 
 .home .btn {
   margin: 0 auto;
+}
+
+.party {
+  background-image: url("images/wide/6.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* height: 70vh; */
+  width: 80%;
+}
+
+.party-detail {
+  width: 60%;
+  background-color: #ffffffba;
 }
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
