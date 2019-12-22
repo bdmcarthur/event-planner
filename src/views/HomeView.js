@@ -6,7 +6,7 @@ const Home = () => {
     <div className="home">
       <div className="container">
         <h1 className="home-title">Party Planner</h1>
-        <div>
+        <div class="home-btns mt-4">
           <Link to="/party/new">
             <button
               type="button"

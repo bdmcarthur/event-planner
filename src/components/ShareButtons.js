@@ -11,7 +11,7 @@ import {
 const ShareButtons = props => {
   let party = props.party;
   return (
-    <div class="row w-75 mx-auto justify-content-center">
+    <div class="row w-75 mx-auto justify-content-center mt-2">
       <div class="col-12 my-4">
         <h2 className="text-center">Share Your Party!</h2>
       </div>

@@ -45,57 +45,59 @@ class Signup extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div className="container">
-          <h4>Sign up</h4>
-          <form>
-            <div className="form-group text-left">
-              <label htmlFor="username">Email address</label>
-              <input
-                type="email"
-                className="form-control"
-                autoComplete="username"
-                id="username"
-                name="username"
-                aria-describedby="emailHelp"
-                value={this.state.username}
-                onChange={this.handleChange}
-              ></input>
-            </div>
+        <div className="signup">
+          <div class="container signup-container">
+            <h4>Sign up</h4>
+            <form>
+              <div className="form-group text-left">
+                <label htmlFor="username">Email address</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  autoComplete="username"
+                  id="username"
+                  name="username"
+                  aria-describedby="emailHelp"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
 
-            <div className="form-group text-left">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                aria-describedby="emailHelp"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-              ></input>
-            </div>
+              <div className="form-group text-left">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  aria-describedby="emailHelp"
+                  className="form-control"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
 
-            <div className="form-group text-left">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                autoComplete="new-password"
-                className="form-control"
-                id="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              ></input>
-            </div>
+              <div className="form-group text-left">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  autoComplete="new-password"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={this.handleSubmit}
-            >
-              Sign Up
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="btn btn-secondary"
+                onClick={this.handleSubmit}
+              >
+                Sign Up
+              </button>
+            </form>
+          </div>
         </div>
       );
     }

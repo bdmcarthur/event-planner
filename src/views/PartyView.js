@@ -48,10 +48,10 @@ export default class Plan extends Component {
     // height: 95vh;
     let party = this.state.currentParty;
     return (
-      <div class="my-5 mx-auto party">
+      <div class="mx-auto party">
         {party && (
-          <div className="container mx-auto py-5">
-            <div className="party-detail mx-auto p-5">
+          <div className="container mx-auto py-5 party-container">
+            <div className="party-detail mx-auto">
               <h1>{party[0].title}</h1>
               <div className="">
                 <p className="">Where: {party[0].address}</p>

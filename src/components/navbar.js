@@ -47,7 +47,7 @@ class Navbar extends Component {
       user = this.props.loggedInUser._id;
     }
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
+      <nav className="navbar navbar-expand-lg navbar-light">
         <Link to="/" className="btn btn-link text-secondary">
           <span className="text-secondary">Home</span>
         </Link>
@@ -62,7 +62,10 @@ class Navbar extends Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
           {loggedIn ? (
             <ul className="navbar-nav">
               <li className="nav-item">

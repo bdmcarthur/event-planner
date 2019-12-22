@@ -1,52 +1,72 @@
-body {
-  font-family: "Noto Sans", sans-serif;
-}
-
 h1,
 h2,
 h3,
 h4,
 h5 {
-  font-family: "Gelasio", serif;
+  font-family: "Abril Fatface", cursive;
 }
 
 :root {
   --light: #ffa083;
   --dark: #fa8663;
 }
+.navbar {
+  background-color: white;
+}
 
-.home {
+.home,
+.login,
+.signup {
   background-image: url("images/home.png");
-  background-position: center;
+  background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
+  margin-top: -56px;
   background-color: #ffe7e3;
+}
+
+.login,
+.signup {
+  padding-top: 3.5rem;
+}
+
+.login-container,
+.signup-container {
+  width: 95%;
+  background-color: #ffffffba;
+  padding: 1rem;
+  margin: 3rem auto;
 }
 
 .home-title {
   font-size: 5rem;
-  padding: 4rem 1rem;
   width: 100%;
   text-align: center;
+  padding-top: 5rem;
 }
 
 .home .btn {
   margin: 0 auto;
 }
 
+.home-btns {
+  text-align: center;
+}
+
 .party {
-  background-image: url("images/wide/6.jpg");
+  background-image: url("images/wide/1.jpg");
+  background-attachment: fixed;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
-  /* height: 70vh; */
-  width: 80%;
+  min-height: 100%;
 }
 
 .party-detail {
-  width: 60%;
   background-color: #ffffffba;
+  width: 95%;
+  padding: 1.5rem;
 }
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
@@ -54,15 +74,41 @@ h5 {
 /* 
 // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .home {
-    background-image: url("images/home.png");
-    background-position: center;
+  .navbar {
+    background-color: transparent;
+  }
+
+  .home,
+  .login,
+  .signup {
+    margin-top: -54px;
   }
 
   .home-title {
     font-size: 8rem;
-    padding: 4rem 1rem;
+    padding: 7rem 1rem 2rem 1rem;
     width: 60%;
+    text-align: left;
+  }
+
+  .party-detail {
+    margin-top: 30px;
+    width: 75%;
+    padding: 3rem;
+  }
+
+  .login-container,
+  .signup-container {
+    width: 50%;
+    padding: 1rem;
+  }
+
+  .login,
+  .signup {
+    padding-top: 6rem;
+  }
+
+  .home-btns {
     text-align: left;
   }
 }
