@@ -3,8 +3,8 @@ import { Redirect } from "react-router-dom";
 import * as AuthenticationServices from "../services/auth-services";
 
 class LoginForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: "",
       password: "",
@@ -19,6 +19,7 @@ class LoginForm extends Component {
   };
 
   handleSubmit = event => {
+    console.log("his", this.props.history);
     event.preventDefault();
     const { username, password } = this.state;
 
@@ -31,9 +32,10 @@ class LoginForm extends Component {
           loggedIn: true,
           loggedInUser: user
         });
-        this.setState({
-          redirectTo: "/"
-        });
+        // this.setState({
+        //   redirectTo: "/"
+        // });
+        this.props.history.push("/");
       })
       .catch(error => {
         console.log(error);

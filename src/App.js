@@ -5,9 +5,10 @@ import Signup from "./Components/SignUp";
 import LoginForm from "./Components/LoginForm";
 import Navbar from "./Components/Navbar";
 import Home from "./views/HomeView";
-import PlanForm from "./Components/PlanForm";
+import PartyCreateView from "./views/PartyCreateView";
 import Plan from "./views/PartyView";
 import Profile from "./views/ProfileView";
+import PlanEdit from "./Components/PlanEdit";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import * as PartyServices from "./services/party-services";
 
@@ -89,34 +90,50 @@ class App extends Component {
         )}
         <Switch>
           <Route path="/" exact component={Home} />
-          <ProtectedRoute
-            path="/party/new"
-            user={this.state.loggedInUser}
-            render={props => <PlanForm exact getParties={this.getParties} />}
-          />
+          {userLoaded === true && (
+            <ProtectedRoute
+              path="/party/new"
+              user={this.state.loggedInUser}
+              render={props => (
+                <PartyCreateView exact getParties={this.getParties} />
+              )}
+            />
+          )}
           <Route
             path="/login"
             exact
-            render={() => <LoginForm updateUser={this.updateUser} />}
+            render={props => (
+              <LoginForm {...props} updateUser={this.updateUser} />
+            )}
           />
           <Route
             path="/signup"
             exact
-            render={() => <Signup updateUser={this.updateUser} />}
+            render={props => <Signup {...props} updateUser={this.updateUser} />}
           />
-          <ProtectedRoute
-            path="/profile/:id"
-            user={this.state.loggedInUser}
-            render={props => (
-              <Profile
-                exact
-                {...props}
-                user={this.state.loggedInUser}
-                parties={this.state.parties}
-              />
-            )}
-          />
-
+          {userLoaded === true && (
+            <ProtectedRoute
+              path="/profile/:id"
+              user={this.state.loggedInUser}
+              render={props => (
+                <Profile
+                  exact
+                  {...props}
+                  user={this.state.loggedInUser}
+                  parties={this.state.parties}
+                />
+              )}
+            />
+          )}
+          {userLoaded === true && (
+            <ProtectedRoute
+              path="/parties/:id/edit"
+              user={this.state.loggedInUser}
+              render={props => (
+                <PlanEdit exact {...props} user={this.state.loggedInUser} />
+              )}
+            />
+          )}
           <Route
             path="/parties/:id"
             exact

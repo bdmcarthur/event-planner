@@ -55,7 +55,6 @@ h5 {
 }
 
 .party {
-  background-image: url("images/wide/1.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -64,7 +63,7 @@ h5 {
 }
 
 .party-detail {
-  background-color: #ffffffba;
+  background-color: #ffffffde;
   width: 95%;
   padding: 1.5rem;
 }

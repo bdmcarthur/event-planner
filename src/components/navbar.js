@@ -32,7 +32,6 @@ class Navbar extends Component {
   componentDidUpdate = prevProps => {
     if (this.props.loggedInUser) {
       if (this.props.loggedInUser !== prevProps.loggedInUser) {
-        console.log("here", this.props.loggedInUser);
         this.setState({
           userId: this.props.loggedInUser
         });

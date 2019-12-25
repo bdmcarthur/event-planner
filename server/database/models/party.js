@@ -38,6 +38,11 @@ const partySchema = new Schema(
     partyCode: {
       type: String
     },
+    design: [
+      {
+        type: String
+      }
+    ],
     guestList: [
       {
         type: String

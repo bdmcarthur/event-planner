@@ -26,7 +26,8 @@ router.post("/add", (req, res, next) => {
     date,
     address,
     imageUrl,
-    guestList
+    guestList,
+    design
   } = req.body;
 
   Party.create({
@@ -37,6 +38,7 @@ router.post("/add", (req, res, next) => {
     date,
     imageUrl,
     guestList,
+    design,
     user: req.user._id,
     partyCode: generateRandomCode(6)
   })

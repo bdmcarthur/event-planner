@@ -41,6 +41,6 @@ export const getPartiesService = user =>
         resolve(response.data.data);
       })
       .catch(error => {
-        console.log(error);
+        console.log("Parties", error);
       });
   });

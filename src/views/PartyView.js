@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ShareButtons from "../Components/ShareButtons";
 import axios from "axios";
+import imgUrl from "../images/wide/1.jpg";
+import PartyCard from "../Components/PartyCard";
 
 export default class Plan extends Component {
   constructor() {
@@ -32,7 +34,7 @@ export default class Plan extends Component {
       .then(response => {
         if (response.status === 200) {
           this.setState({
-            currentParty: response.data.data.plan
+            currentParty: response.data.data.plan[0]
           });
           this.checkOwner();
         }
@@ -42,26 +44,13 @@ export default class Plan extends Component {
       });
   };
   render() {
-    // let body =   background-image: url("images/wide/1.jpg");
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // height: 95vh;
+    let backgroundStyle = { backgroundImage: "url(" + imgUrl + ")" };
     let party = this.state.currentParty;
     return (
-      <div class="mx-auto party">
+      <div>
         {party && (
-          <div className="container mx-auto py-5 party-container">
-            <div className="party-detail mx-auto">
-              <h1>{party[0].title}</h1>
-              <div className="">
-                <p className="">Where: {party[0].address}</p>
-                <p className="">
-                  When: {party[0].date}, {party[0].time}
-                </p>
-                <p className="">Details: {party[0].description}</p>
-              </div>
-            </div>
-
+          <div>
+            <PartyCard party={party} />
             {this.state.isOwner && (
               <ShareButtons party={this.state.currentParty} />
             )}
