@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ShareButtons from "../Components/ShareButtons";
 import axios from "axios";
-import imgUrl from "../images/wide/1.jpg";
 import PartyCard from "../Components/PartyCard";
 
 export default class Plan extends Component {
@@ -18,8 +17,9 @@ export default class Plan extends Component {
   };
 
   checkOwner = props => {
+    console.log(this.props.user);
     if (this.props.user && this.state.currentParty) {
-      if (this.props.user._id === this.state.currentParty[0].user._id) {
+      if (this.props.user._id === this.state.currentParty.user._id) {
         this.setState({
           isOwner: true
         });
@@ -43,8 +43,8 @@ export default class Plan extends Component {
         console.log("Logout error", error);
       });
   };
+
   render() {
-    let backgroundStyle = { backgroundImage: "url(" + imgUrl + ")" };
     let party = this.state.currentParty;
     return (
       <div>

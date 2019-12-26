@@ -19,7 +19,7 @@ class PartyCreateView extends Component {
       guestList: "",
       planStage: "text",
       redirectTo: null,
-      design: 1,
+      background: 1,
       mainFont: "Abril Fatface",
       bodyFont: "Playfair Display"
     };
@@ -32,7 +32,7 @@ class PartyCreateView extends Component {
   };
 
   handleClick = (state, value) => {
-    console.log("cllllick", state, value);
+    console.log("ck", state, value);
     this.setState({
       [state]: value
     });
@@ -87,7 +87,6 @@ class PartyCreateView extends Component {
   };
 
   render() {
-    console.log(this.state.activeFontFamily);
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else if (this.state.planStage === "text") {
@@ -101,7 +100,7 @@ class PartyCreateView extends Component {
     } else {
       return (
         <div className="container">
-          <PartyCard party={this.state} imgUrl={this.state.design} />
+          <PartyCard party={this.state} />
           <div className="container mt-3 mx-auto text-center">
             {this.state.planStage === "design" ? (
               <div>

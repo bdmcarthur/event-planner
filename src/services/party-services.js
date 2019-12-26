@@ -12,9 +12,7 @@ export const addService = ({
   guestList,
   time,
   date,
-  background,
-  mainFont,
-  bodyFont
+  design
 }) =>
   new Promise((resolve, reject) => {
     partyAPI
@@ -26,9 +24,7 @@ export const addService = ({
         guestList,
         time,
         date,
-        background,
-        mainFont,
-        bodyFont
+        design
       })
       .then(response => {
         const party = response.data.data.plan;

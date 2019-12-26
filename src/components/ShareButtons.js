@@ -17,17 +17,15 @@ const ShareButtons = props => {
       </div>
 
       <div class="col-xs-4">
-        <TelegramShareButton
-          url={`http://localhost:3000/parties/${party[0]._id}`}
-        >
+        <TelegramShareButton url={`http://localhost:3000/parties/${party._id}`}>
           <TelegramIcon />
         </TelegramShareButton>
       </div>
 
       <div class="col-xs-4">
         <WhatsappShareButton
-          url={`http://localhost:3000/parties/${party[0]._id}`}
-          title={`Check out ${party[0].title}! Click on the link and enter ${party[0].partyCode} as the Party code to RSVP`}
+          url={`http://localhost:3000/parties/${party._id}`}
+          title={`Check out ${party.title}! Click on the link and enter ${party.partyCode} as the Party code to RSVP`}
         >
           <WhatsappIcon />
         </WhatsappShareButton>
@@ -35,9 +33,9 @@ const ShareButtons = props => {
 
       <div class="col-xs-4">
         <EmailShareButton
-          url={`http://localhost:3000/parties/${party[0]._id}`}
-          subject={party[0].title}
-          body={`Check out my party! Click on the link and enter ${party[0].partyCode} as the Party code to RSVP`}
+          url={`http://localhost:3000/parties/${party._id}`}
+          subject={party.title}
+          body={`Check out my party! Click on the link and enter ${party.partyCode} as the Party code to RSVP`}
         >
           <EmailIcon />
         </EmailShareButton>

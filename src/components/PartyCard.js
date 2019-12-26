@@ -1,4 +1,5 @@
 import React from "react";
+import WebFont from "webfontloader";
 import img1 from "../images/wide/1.jpg";
 import img2 from "../images/wide/2.jpg";
 import img3 from "../images/wide/3.jpg";
@@ -8,27 +9,53 @@ import img6 from "../images/wide/6.jpg";
 let imgArr = [img1, img2, img3, img4, img5, img6];
 
 const PartyCard = props => {
-  let backgroundStyle = {
-    backgroundImage: `url('${imgArr[props.imgUrl - 1]}')`
-  };
-  let fontStyleMain = {
-    fontFamily: props.font
-  };
+  let backgroundStyle;
+  let fontStyleMain;
+  let fontStyleBody;
   let party = props.party;
+
+  if (party.design) {
+    backgroundStyle = {
+      backgroundImage: `url('${imgArr[party.design[0] - 1]}')`,
+      minHeight: `100vh`
+    };
+    fontStyleMain = {
+      fontFamily: party.design[1]
+    };
+    fontStyleBody = {
+      fontFamily: party.design[2]
+    };
+
+    WebFont.load({
+      google: {
+        families: [party.design[1], party.design[2]]
+      }
+    });
+  } else {
+    backgroundStyle = {
+      backgroundImage: `url('${imgArr[party.background - 1]}')`,
+      minHeight: `100%`
+    };
+  }
+
   return (
     <div style={backgroundStyle} class="mx-auto party">
       <div className="container mx-auto py-5 party-container">
         <div class="row w-75 mx-auto justify-content-center mt-2">
           <div className="party-detail mx-auto">
-            <h1 className="apply-font-mainFont">{party.title}</h1>
+            <h1 style={fontStyleMain} className="apply-font-mainFont">
+              {party.title}
+            </h1>
             <div className="mt-4">
-              <p className="apply-font-bodyFont">
+              <p style={fontStyleBody} className="apply-font-bodyFont">
                 <b>Where:</b> {party.address}
               </p>
-              <p className="apply-font-bodyFont">
+              <p style={fontStyleBody} className="apply-font-bodyFont">
                 <b>When:</b> {party.date}, {party.time}
               </p>
-              <p className="apply-font-bodyFont mt-3">{party.description}</p>
+              <p style={fontStyleBody} className="apply-font-bodyFont mt-3">
+                {party.description}
+              </p>
             </div>
           </div>
         </div>

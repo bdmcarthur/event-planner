@@ -16,6 +16,7 @@ const Backgrounds = props => {
               props.handleClick("background", 1);
             }}
             className="w-100"
+            alt="background"
             src={img1}
           ></img>
         </div>
@@ -25,6 +26,7 @@ const Backgrounds = props => {
               props.handleClick("background", 2);
             }}
             className="w-100"
+            alt="background"
             src={img2}
           ></img>
         </div>
@@ -34,6 +36,7 @@ const Backgrounds = props => {
               props.handleClick("background", 3);
             }}
             className="w-100"
+            alt="background"
             src={img3}
           ></img>
         </div>
@@ -43,6 +46,7 @@ const Backgrounds = props => {
               props.handleClick("background", 4);
             }}
             className="w-100"
+            alt="background"
             src={img4}
           ></img>
         </div>
@@ -52,6 +56,7 @@ const Backgrounds = props => {
               props.handleClick("background", 5);
             }}
             className="w-100"
+            alt="background"
             src={img5}
           ></img>
         </div>
@@ -61,6 +66,7 @@ const Backgrounds = props => {
               props.handleClick("background", 6);
             }}
             className="w-100"
+            alt="background"
             src={img6}
           ></img>
         </div>
