@@ -11,7 +11,10 @@ export const addService = ({
   imageUrl,
   guestList,
   time,
-  date
+  date,
+  background,
+  mainFont,
+  bodyFont
 }) =>
   new Promise((resolve, reject) => {
     partyAPI
@@ -22,7 +25,10 @@ export const addService = ({
         imageUrl,
         guestList,
         time,
-        date
+        date,
+        background,
+        mainFont,
+        bodyFont
       })
       .then(response => {
         const party = response.data.data.plan;

@@ -11,19 +11,24 @@ const PartyCard = props => {
   let backgroundStyle = {
     backgroundImage: `url('${imgArr[props.imgUrl - 1]}')`
   };
+  let fontStyleMain = {
+    fontFamily: props.font
+  };
   let party = props.party;
   return (
     <div style={backgroundStyle} class="mx-auto party">
       <div className="container mx-auto py-5 party-container">
         <div class="row w-75 mx-auto justify-content-center mt-2">
           <div className="party-detail mx-auto">
-            <h1>{party.title}</h1>
-            <div className="">
-              <p className="">Where: {party.address}</p>
-              <p className="">
-                When: {party.date}, {party.time}
+            <h1 className="apply-font-mainFont">{party.title}</h1>
+            <div className="mt-4">
+              <p className="apply-font-bodyFont">
+                <b>Where:</b> {party.address}
               </p>
-              <p className="">Details: {party.description}</p>
+              <p className="apply-font-bodyFont">
+                <b>When:</b> {party.date}, {party.time}
+              </p>
+              <p className="apply-font-bodyFont mt-3">{party.description}</p>
             </div>
           </div>
         </div>

@@ -56,7 +56,7 @@ h5 {
 
 .party {
   background-attachment: fixed;
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100%;
@@ -66,6 +66,10 @@ h5 {
   background-color: #ffffffde;
   width: 95%;
   padding: 1.5rem;
+}
+
+.picker-font {
+  font-family: "Open Sans", sans-serif;
 }
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {

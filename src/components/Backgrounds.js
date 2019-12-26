@@ -13,7 +13,7 @@ const Backgrounds = props => {
         <div class="col-md-2 col-6">
           <img
             onClick={() => {
-              props.handleClick("design", 1);
+              props.handleClick("background", 1);
             }}
             className="w-100"
             src={img1}
@@ -22,7 +22,7 @@ const Backgrounds = props => {
         <div class="col-md-2 col-6">
           <img
             onClick={() => {
-              props.handleClick("design", 2);
+              props.handleClick("background", 2);
             }}
             className="w-100"
             src={img2}
@@ -31,7 +31,7 @@ const Backgrounds = props => {
         <div class="col-md-2 col-6">
           <img
             onClick={() => {
-              props.handleClick("design", 3);
+              props.handleClick("background", 3);
             }}
             className="w-100"
             src={img3}
@@ -40,7 +40,7 @@ const Backgrounds = props => {
         <div class="col-md-2 col-6">
           <img
             onClick={() => {
-              props.handleClick("design", 4);
+              props.handleClick("background", 4);
             }}
             className="w-100"
             src={img4}
@@ -49,7 +49,7 @@ const Backgrounds = props => {
         <div class="col-md-2 col-6">
           <img
             onClick={() => {
-              props.handleClick("design", 5);
+              props.handleClick("background", 5);
             }}
             className="w-100"
             src={img5}
@@ -58,7 +58,7 @@ const Backgrounds = props => {
         <div class="col-md-2 col-6">
           <img
             onClick={() => {
-              props.handleClick("design", 6);
+              props.handleClick("background", 6);
             }}
             className="w-100"
             src={img6}

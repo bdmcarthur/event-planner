@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import PlanForm from "../Components/PlanForm";
 import PartyCard from "../Components/PartyCard";
 import Backgrounds from "../Components/Backgrounds";
+import FontPicker from "../Components/FontPicker";
 
 class PartyCreateView extends Component {
   constructor() {
@@ -18,7 +19,9 @@ class PartyCreateView extends Component {
       guestList: "",
       planStage: "text",
       redirectTo: null,
-      design: 1
+      design: 1,
+      mainFont: "Abril Fatface",
+      bodyFont: "Playfair Display"
     };
   }
 
@@ -45,7 +48,9 @@ class PartyCreateView extends Component {
       guestList,
       date,
       time,
-      design
+      background,
+      mainFont,
+      bodyFont
     } = this.state;
     PartyServices.addService({
       title,
@@ -55,7 +60,7 @@ class PartyCreateView extends Component {
       guestList,
       date,
       time,
-      design
+      design: [background, mainFont, bodyFont]
     })
       .then(response => {
         this.setState({
@@ -68,6 +73,12 @@ class PartyCreateView extends Component {
       });
   };
 
+  fontChange = (state, font) => {
+    this.setState({
+      [state]: font
+    });
+  };
+
   designParty = event => {
     event.preventDefault();
     this.setState({
@@ -76,6 +87,7 @@ class PartyCreateView extends Component {
   };
 
   render() {
+    console.log(this.state.activeFontFamily);
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else if (this.state.planStage === "text") {
@@ -123,8 +135,19 @@ class PartyCreateView extends Component {
                 </button>
               </div>
             ) : (
-              <div>
-                <h1>will be fonts</h1>
+              <div className="picker-font">
+                <h3>Party Title Font</h3>
+                <FontPicker
+                  name="mainFont"
+                  fontChange={("titleFont", this.fontChange)}
+                  defaultFont={this.state.mainFont}
+                />
+                <h3>Party Body Font</h3>
+                <FontPicker
+                  name="bodyFont"
+                  fontChange={("bodyFont", this.fontChange)}
+                  defaultFont={this.state.bodyFont}
+                />
                 <button
                   className="btn btn-secondary mt-3"
                   onClick={() => {
