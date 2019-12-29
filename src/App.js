@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
-import Signup from "./Components/SignUp";
 import LoginForm from "./Components/LoginForm";
+import Signup from "./Components/SignUp";
+
 import Navbar from "./Components/Navbar";
 import Home from "./views/HomeView";
 import PartyCreateView from "./views/PartyCreateView";
