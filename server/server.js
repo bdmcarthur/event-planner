@@ -20,6 +20,8 @@ app.use(
 );
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, "build")));
+
 // Sessions
 app.use(
   session({

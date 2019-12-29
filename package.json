@@ -33,7 +33,7 @@
   "proxy": "http://localhost:3010",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cd client && npm install --production=false && npm run build && cd ..",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "api": "nodemon ./server/server.js",
