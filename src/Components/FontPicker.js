@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import FontPicker from "font-picker-react";
+import React, { Component } from "../../node_modules/react";
+import FontPicker from "../../node_modules/font-picker-react";
 
 export default class ExampleComponent extends Component {
   constructor(props) {

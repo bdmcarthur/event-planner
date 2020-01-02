@@ -1,5 +1,5 @@
-import React from "react";
-import WebFont from "webfontloader";
+import React from "../../node_modules/react";
+import WebFont from "../../node_modules/webfontloader";
 import img1 from "../images/wide/1.jpg";
 import img2 from "../images/wide/2.jpg";
 import img3 from "../images/wide/3.jpg";

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from "../../node_modules/react";
 import * as PartyServices from "../services/party-services";
-import { Redirect } from "react-router-dom";
+import { Redirect } from "../../node_modules/react-router-dom";
 import Background from "./Backgrounds";
 
 class PlanEdit extends Component {

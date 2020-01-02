@@ -6,7 +6,7 @@ const Home = () => {
     <div className="home">
       <div className="container">
         <h1 className="home-title">Party Planner</h1>
-        <div class="home-btns mt-4">
+        <div className="home-btns mt-4">
           <Link to="/party/new">
             <button
               type="button"
@@ -16,7 +16,7 @@ const Home = () => {
               Start Planning!
             </button>
           </Link>
-          <Link>
+          <Link to="/">
             <button type="button" className="btn btn-secondary btn-lg m-3">
               See Examples
             </button>
