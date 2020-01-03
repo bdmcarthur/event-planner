@@ -6,7 +6,6 @@ const dbConnection = require("./database");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
 const app = express();
-const PORT = 3010;
 const path = require("path");
 require("dotenv").config();
 // Route requires
@@ -47,6 +46,4 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 // Starting Server
-app.listen(PORT, () => {
-  console.log(`App listening on PORT: ${PORT}`);
-});
+app.listen(process.env.PORT || 5000);
