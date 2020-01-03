@@ -26,10 +26,14 @@
     "styled-components": "^4.4.1",
     "webfontloader": "^1.6.28"
   },
+  "proxy": "http://localhost:3010",
   "scripts": {
-    "start": "node index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
-    "dev": "concurrently \"react-scripts start\" \"node index.js\""
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "api": "nodemon ./server/server.js",
+    "dev": "concurrently \"react-scripts start\" \"node ../server.js\""
   },
   "devDependencies": {
     "concurrently": "^5.0.1",

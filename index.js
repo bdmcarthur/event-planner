@@ -21,11 +21,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use(express.static(`${__dirname}/../build`));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../build/index.html"));
-});
+app.use(express.static(path.join(__dirname, "client/build")));
 
 // Sessions
 app.use(
@@ -45,6 +41,9 @@ app.use(passport.session()); // calls the deserializeUser
 app.use("/user", user);
 app.use("/party", party);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 // Starting Server
 app.listen(PORT, () => {
   console.log(`App listening on PORT: ${PORT}`);

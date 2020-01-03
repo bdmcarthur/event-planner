@@ -19,7 +19,6 @@ class LoginForm extends Component {
   };
 
   handleSubmit = event => {
-    console.log("his", this.props.history);
     event.preventDefault();
     const { username, password } = this.state;
 
