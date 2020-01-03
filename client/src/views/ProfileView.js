@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Profile = props => {
   let partyList = props.parties;
-
+  console.log("party profile", props.parties);
   return (
     <div class="container">
       <h1>Hello</h1>

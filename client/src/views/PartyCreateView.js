@@ -65,10 +65,10 @@ class PartyCreateView extends Component {
       design: [background, mainFont, bodyFont]
     })
       .then(response => {
+        this.props.getParties();
         this.setState({
           redirectTo: `/parties/${response._id}`
         });
-        this.props.getParties();
       })
       .catch(error => {
         console.log(error);
@@ -167,7 +167,6 @@ class PartyCreateView extends Component {
           >
             Submit
           </button>
-          ;
         </div>
       );
     }

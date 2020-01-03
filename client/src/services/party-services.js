@@ -39,8 +39,9 @@ export const addService = ({
 
 export const getPartiesService = user =>
   new Promise((resolve, reject) => {
+    console.log("sj", user);
     partyAPI
-      .get("/getParties", user)
+      .post("/getParties", user)
       .then(response => {
         resolve(response.data.data);
       })

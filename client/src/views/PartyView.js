@@ -17,7 +17,6 @@ export default class Plan extends Component {
   };
 
   checkOwner = props => {
-    console.log(this.props.user);
     if (this.props.user && this.state.currentParty) {
       if (this.props.user._id === this.state.currentParty.user._id) {
         this.setState({

@@ -51,8 +51,9 @@ router.post("/add", (req, res, next) => {
     });
 });
 
-router.get("/getParties", (req, res, next) => {
-  Party.find({ user: req.user })
+router.post("/getParties", (req, res, next) => {
+  let user = req.body.user;
+  Party.find({ user: user })
     .then(plan => {
       res.json({ type: "success", data: { plan } });
     })
