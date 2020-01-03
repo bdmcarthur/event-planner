@@ -6,10 +6,11 @@ h5 {
   font-family: "Abril Fatface", cursive;
 }
 
-:root {
-  --light: #ffa083;
-  --dark: #fa8663;
+a {
+  color: black;
+  text-decoration: none; /* no underline */
 }
+
 .navbar {
   background-color: white;
 }

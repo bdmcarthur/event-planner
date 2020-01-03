@@ -7,11 +7,11 @@ const Profile = props => {
   return (
     <div class="container">
       <h1>Hello</h1>
-      {partyList ? (
-        partyList.map(party => (
-          <Link to={`/parties/${party._id}`}>
-            <div class="row">
-              <div class="col-sm-6">
+      <div class="row">
+        {partyList ? (
+          partyList.map(party => (
+            <div class="col-5">
+              <Link to={`/parties/${party._id}`}>
                 <div class="card">
                   <div class="card-body">
                     <h1 class="card-title">{party.title}</h1>
@@ -20,13 +20,13 @@ const Profile = props => {
                     <p class="card-text">{party.description}</p>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
-          </Link>
-        ))
-      ) : (
-        <h3>Plan Something</h3>
-      )}
+          ))
+        ) : (
+          <h3>Plan Something</h3>
+        )}
+      </div>
     </div>
   );
 };

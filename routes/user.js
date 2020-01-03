@@ -43,10 +43,12 @@ router.post(
 );
 
 router.get("/", (req, res, next) => {
-  if (req.user) {
-  } else {
-    res.json({ user: null });
-  }
+  // if (req.user) {
+  //   res.json({ type: "success", data: { name: "James Dean" } });
+  // } else {
+  //   res.json({ user: null });
+  // }
+  res.json({ type: "success", data: { name: "James Dean" } });
 });
 
 router.post("/logout", (req, res) => {

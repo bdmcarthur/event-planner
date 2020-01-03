@@ -3,8 +3,10 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const session = require("express-session");
 const dbConnection = require("./database");
+const expressSession = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
+const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 require("dotenv").config();
@@ -14,23 +16,21 @@ const party = require("./routes/party");
 
 // MIDDLEWARE
 app.use(morgan("dev"));
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
-// Sessions
 app.use(
-  session({
+  expressSession({
     secret: process.env.SESSION_SECRET,
-    cookie: { maxAge: 60 * 60 * 24 * 1000 },
-    store: new MongoStore({ mongooseConnection: dbConnection }),
     resave: true,
-    saveUninitialized: false
+    cookie: { maxAge: 60 * 60 * 24 * 1000 },
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    })
   })
 );
 
@@ -45,5 +45,13 @@ app.use("/party", party);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
+
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join("build", "index.html"));
+//   });
+// }
+
 // Starting Server
 app.listen(process.env.PORT || 5000);

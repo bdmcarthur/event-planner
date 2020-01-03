@@ -52,6 +52,7 @@ router.post("/add", (req, res, next) => {
 });
 
 router.post("/getParties", (req, res, next) => {
+  console.log("thisisiisisis", req.user);
   let user = req.body.user;
   Party.find({ user: user })
     .then(plan => {
