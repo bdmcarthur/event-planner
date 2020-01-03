@@ -7,9 +7,10 @@ import Backgrounds from "../Components/Backgrounds";
 import FontPicker from "../Components/FontPicker";
 
 class PartyCreateView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      user: this.props.user._id,
       title: "",
       description: "",
       date: "",
@@ -32,7 +33,6 @@ class PartyCreateView extends Component {
   };
 
   handleClick = (state, value) => {
-    console.log("ck", state, value);
     this.setState({
       [state]: value
     });
@@ -41,6 +41,7 @@ class PartyCreateView extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const {
+      user,
       title,
       description,
       address,
@@ -53,6 +54,7 @@ class PartyCreateView extends Component {
       bodyFont
     } = this.state;
     PartyServices.addService({
+      user,
       title,
       description,
       address,

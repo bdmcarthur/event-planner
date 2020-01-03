@@ -6,7 +6,7 @@ const Profile = props => {
 
   return (
     <div class="container">
-      <h1>Profile</h1>
+      <h1>Hello</h1>
       {partyList ? (
         partyList.map(party => (
           <Link to={`/parties/${party._id}`}>

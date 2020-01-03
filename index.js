@@ -8,6 +8,7 @@ const passport = require("./passport");
 const app = express();
 const PORT = 3010;
 const path = require("path");
+require("dotenv").config();
 // Route requires
 const user = require("./routes/user");
 const party = require("./routes/party");
@@ -26,10 +27,11 @@ app.use(express.static(path.join(__dirname, "client/build")));
 // Sessions
 app.use(
   session({
-    secret: "fraggle-rock", //pick a random string to make the hash that is generated secure
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 60 * 60 * 24 * 1000 },
     store: new MongoStore({ mongooseConnection: dbConnection }),
-    resave: false, //required
-    saveUninitialized: false //required
+    resave: true,
+    saveUninitialized: false
   })
 );
 

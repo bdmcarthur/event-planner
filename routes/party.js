@@ -20,6 +20,7 @@ const generateRandomCode = (() => {
 
 router.post("/add", (req, res, next) => {
   const {
+    user,
     title,
     description,
     time,
@@ -31,6 +32,7 @@ router.post("/add", (req, res, next) => {
   } = req.body;
 
   Party.create({
+    user,
     title,
     description,
     address,
@@ -39,7 +41,6 @@ router.post("/add", (req, res, next) => {
     imageUrl,
     guestList,
     design,
-    user: req.user._id,
     partyCode: generateRandomCode(6)
   })
     .then(plan => {

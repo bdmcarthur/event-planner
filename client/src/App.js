@@ -95,7 +95,11 @@ class App extends Component {
               path="/party/new"
               user={this.state.loggedInUser}
               render={props => (
-                <PartyCreateView exact getParties={this.getParties} />
+                <PartyCreateView
+                  exact
+                  user={this.state.loggedInUser}
+                  getParties={this.getParties}
+                />
               )}
             />
           )}

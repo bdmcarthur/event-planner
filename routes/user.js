@@ -21,7 +21,9 @@ router.post("/signup", (req, res) => {
       });
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
+        console.log("here it iiiissss", req.user);
         res.json(savedUser);
+        res.send(req.user);
       });
     }
   });

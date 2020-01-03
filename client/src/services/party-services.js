@@ -5,6 +5,7 @@ const partyAPI = axios.create({
 });
 
 export const addService = ({
+  user,
   title,
   description,
   address,
@@ -17,6 +18,7 @@ export const addService = ({
   new Promise((resolve, reject) => {
     partyAPI
       .post("/add", {
+        user,
         title,
         description,
         address,
