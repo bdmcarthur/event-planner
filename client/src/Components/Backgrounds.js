@@ -1,73 +1,140 @@
+// import React from "../../node_modules/react";
+
+// const Backgrounds = props => {
+//   return (
+//     <div class="container">
+//       <div class="row">
+//         <div class="col-md-2 col-6">
+//           <img
+//             onClick={() => {
+//               props.handleClick("background", 1);
+//             }}
+//             className="w-100"
+//             alt="background"
+//             src={`/images/${1}.jpg`}
+//           ></img>
+//         </div>
+//         <div class="col-md-2 col-6">
+//           <img
+//             onClick={() => {
+//               props.handleClick("background", 2);
+//             }}
+//             className="w-100"
+//             alt="background"
+//             src={`/images/${2}.jpg`}
+//           ></img>
+//         </div>
+//         <div class="col-md-2 col-6">
+//           <img
+//             onClick={() => {
+//               props.handleClick("background", 3);
+//             }}
+//             className="w-100"
+//             alt="background"
+//             src={`/images/${3}.jpg`}
+//           ></img>
+//         </div>
+//         <div class="col-md-2 col-6">
+//           <img
+//             onClick={() => {
+//               props.handleClick("background", 4);
+//             }}
+//             className="w-100"
+//             alt="background"
+//             src={`/images/${4}.jpg`}
+//           ></img>
+//         </div>
+//         <div class="col-md-2 col-6">
+//           <img
+//             onClick={() => {
+//               props.handleClick("background", 5);
+//             }}
+//             className="w-100"
+//             alt="background"
+//             src={`/images/${5}.jpg`}
+//           ></img>
+//         </div>
+//         <div class="col-md-2 col-6">
+//           <img
+//             onClick={() => {
+//               props.handleClick("background", 6);
+//             }}
+//             className="w-100"
+//             alt="background"
+//             src={`/images/${6}.jpg`}
+//           ></img>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Backgrounds;
+
 import React from "../../node_modules/react";
-import img1 from "../images/wide/1.jpg";
-import img2 from "../images/wide/2.jpg";
-import img3 from "../images/wide/3.jpg";
-import img4 from "../images/wide/4.jpg";
-import img5 from "../images/wide/5.jpg";
-import img6 from "../images/wide/6.jpg";
 
 const Backgrounds = props => {
   return (
     <div class="container">
-      <div class="row">
-        <div class="col-md-2 col-6">
+      <div class="row mt-4">
+        <div class="col-md-6 mt-3 col-6">
           <img
             onClick={() => {
               props.handleClick("background", 1);
             }}
             className="w-100"
             alt="background"
-            src={img1}
+            src={`/images/${1}.jpg`}
           ></img>
         </div>
-        <div class="col-md-2 col-6">
+        <div class="col-md-6 mt-3 col-6">
           <img
             onClick={() => {
               props.handleClick("background", 2);
             }}
             className="w-100"
             alt="background"
-            src={img2}
+            src={`/images/${2}.jpg`}
           ></img>
         </div>
-        <div class="col-md-2 col-6">
+        <div class="col-md-6 mt-3 col-6">
           <img
             onClick={() => {
               props.handleClick("background", 3);
             }}
             className="w-100"
             alt="background"
-            src={img3}
+            src={`/images/${3}.jpg`}
           ></img>
         </div>
-        <div class="col-md-2 col-6">
+        <div class="col-md-6 mt-3 col-6">
           <img
             onClick={() => {
               props.handleClick("background", 4);
             }}
             className="w-100"
             alt="background"
-            src={img4}
+            src={`/images/${4}.jpg`}
           ></img>
         </div>
-        <div class="col-md-2 col-6">
+        <div class="col-md-6 mt-3 col-6">
           <img
             onClick={() => {
               props.handleClick("background", 5);
             }}
             className="w-100"
             alt="background"
-            src={img5}
+            src={`/images/${5}.jpg`}
           ></img>
         </div>
-        <div class="col-md-2 col-6">
+        <div class="col-md-6 mt-3 col-6">
           <img
             onClick={() => {
               props.handleClick("background", 6);
             }}
             className="w-100"
             alt="background"
-            src={img6}
+            src={`/images/${6}.jpg`}
           ></img>
         </div>
       </div>

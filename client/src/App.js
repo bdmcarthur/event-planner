@@ -78,7 +78,6 @@ class App extends Component {
 
   render() {
     let userLoaded = this.state.userLoaded;
-    console.log("state", this.state);
     return (
       <BrowserRouter>
         {userLoaded === true && (

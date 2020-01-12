@@ -2,7 +2,7 @@ import React from "../../node_modules/react";
 
 const PlanForm = props => {
   return (
-    <div className="container">
+    <div className="container mb-5">
       <h1>Plan Your Fabulous Event</h1>
       <form>
         <div className="form-group">

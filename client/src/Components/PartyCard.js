@@ -1,12 +1,5 @@
 import React from "../../node_modules/react";
 import WebFont from "../../node_modules/webfontloader";
-import img1 from "../images/wide/1.jpg";
-import img2 from "../images/wide/2.jpg";
-import img3 from "../images/wide/3.jpg";
-import img4 from "../images/wide/4.jpg";
-import img5 from "../images/wide/5.jpg";
-import img6 from "../images/wide/6.jpg";
-let imgArr = [img1, img2, img3, img4, img5, img6];
 
 const PartyCard = props => {
   let backgroundStyle;
@@ -16,8 +9,9 @@ const PartyCard = props => {
 
   if (party.design) {
     backgroundStyle = {
-      backgroundImage: `url('${imgArr[party.design[0] - 1]}')`,
-      minHeight: `100vh`
+      backgroundImage: `url('/images/${party.design[0]}.jpg')`,
+      minHeight: `100vh`,
+      backgroundAttachment: "fixed"
     };
     fontStyleMain = {
       fontFamily: party.design[1]
@@ -33,15 +27,16 @@ const PartyCard = props => {
     });
   } else {
     backgroundStyle = {
-      backgroundImage: `url('${imgArr[party.background - 1]}')`,
-      minHeight: `100%`
+      backgroundImage: `url('/images/${props.party.background}.jpg')`,
+      minHeight: `100%`,
+      fontSize: ".75rem"
     };
   }
 
   return (
     <div style={backgroundStyle} class="mx-auto party">
       <div className="container mx-auto py-5 party-container">
-        <div class="row w-75 mx-auto justify-content-center mt-2">
+        <div class="row w-90 mx-auto justify-content-center mt-2">
           <div className="party-detail mx-auto">
             <h1 style={fontStyleMain} className="apply-font-mainFont">
               {party.title}

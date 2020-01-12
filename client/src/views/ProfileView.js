@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 
 const Profile = props => {
   let partyList = props.parties;
-  console.log("party profile", props.parties);
+
   return (
-    <div class="container">
-      <h1>Hello</h1>
-      <div class="row">
+    <div className="container text-center party-list">
+      <h1 className="my-4">Your Parties</h1>
+      <div className="row mt-4 justify-content-center">
         {partyList ? (
           partyList.map(party => (
-            <div class="col-5">
+            <div className="col-12 col-md-4 mt-4">
               <Link to={`/parties/${party._id}`}>
-                <div class="card">
-                  <div class="card-body">
-                    <h1 class="card-title">{party.title}</h1>
-                    <p class="card-text">{party.address}</p>
-                    <p class="card-text">{party.date}</p>
-                    <p class="card-text">{party.description}</p>
+                <div className="card text-center border-0">
+                  <div className="card-body">
+                    <h1 className="card-title">{party.title}</h1>
+                    <p className="card-text">{party.address}</p>
+                    <p className="card-text">{party.date}</p>
+                    <p className="card-text">{party.description}</p>
                   </div>
                 </div>
               </Link>
