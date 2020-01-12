@@ -11,6 +11,7 @@ const protectedRoute = ({
     <Route
       {...rest}
       render={props => {
+        console.log("route", user);
         if (user) {
           if (typeof render === "function") {
             return render(props);

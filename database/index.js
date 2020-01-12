@@ -8,7 +8,13 @@ mongoose.Promise = global.Promise;
 //27017 is the default mongoDB port
 const uri = process.env.MONGODB_URI;
 
-mongoose.connect(uri).then(
+const mongooseConnectionOptions = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+};
+
+mongoose.connect(uri, mongooseConnectionOptions).then(
   () => {
     /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
 
